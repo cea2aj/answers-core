@@ -5,7 +5,7 @@ on:
     branches: [main, master]
 
 permissions:
-  contents: write
+  contents: read
   pull-requests: write
 
 jobs:
@@ -19,12 +19,12 @@ jobs:
           PACKAGE_VERSION="v$(cat ./package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[",]//g' | tr -d '[[:space:]]')"
           echo ::set-output name=tag::${PACKAGE_VERSION}
           echo ::set-output name=merge_branch_name::"dev/merge-${PACKAGE_VERSION}-into-develop"
-      - name: Create merge branch
-        uses: peterjgrainger/action-create-branch@v2.0.1
-        with:
-          branch: ${{ steps.vars.outputs.merge_branch_name }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Create merge branch
+      #   uses: peterjgrainger/action-create-branch@v2.0.1
+      #   with:
+      #     branch: ${{ steps.vars.outputs.merge_branch_name }}
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create pull request
         uses: repo-sync/pull-request@v2
         with:
