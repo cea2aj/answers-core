@@ -29,6 +29,8 @@ jobs:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create pull request
         uses: repo-sync/pull-request@v2
+        env:
+          GIT_CEILING_DIRECTORIES: /github/workspace
         with:
           source_branch: "master"
           destination_branch: "develop"
