@@ -32,5 +32,4 @@ jobs:
           destination_branch: "develop"
           pr_title: "Merge ${{ github.event.repository.default_branch }} (${{ steps.vars.outputs.tag }}) into develop"
           pr_body: "Merge ${{ github.event.repository.default_branch }} (${{ steps.vars.outputs.tag }}) into develop"
-          pr_assignee: "cea2aj"
           github_token: ${{ secrets.GITHUB_TOKEN }} 
