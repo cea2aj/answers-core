@@ -28,7 +28,7 @@ jobs:
       - name: Create pull request
         uses: repo-sync/pull-request@v2
         with:
-          source_branch: ${{ steps.vars.outputs.merge_branch_name }}
+          source_branch: "master"
           destination_branch: "develop"
           pr_title: "Merge ${{ github.event.repository.default_branch }} (${{ steps.vars.outputs.tag }}) into develop"
           pr_body: "Merge ${{ github.event.repository.default_branch }} (${{ steps.vars.outputs.tag }}) into develop"
