@@ -20,14 +20,14 @@ jobs:
           echo ::set-output name=tag::${PACKAGE_VERSION}
           echo ::set-output name=merge_branch_name::"dev/merge-${PACKAGE_VERSION}-into-develop"
           git config --global --add safe.directory /github/workspace
-      # - name: Create merge branch
-      #   uses: peterjgrainger/action-create-branch@v2.0.1
-      #   with:
-      #     branch: ${{ steps.vars.outputs.merge_branch_name }}
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create merge branch
+        uses: peterjgrainger/action-create-branch@v2.0.1
+        with:
+          branch: ${{ steps.vars.outputs.merge_branch_name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create pull request
-        uses: repo-sync/pull-request@v2
+        uses: cea2aj/pull-request
         with:
           source_branch: "master"
           destination_branch: "develop"
