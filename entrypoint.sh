@@ -3,7 +3,7 @@
 set -e
 set -o pipefail
 
-git --version
+git config --global --add safe.directory /github/workspace
 
 if [[ -z "$GITHUB_TOKEN" ]]; then
   echo "Set the GITHUB_TOKEN environment variable."
