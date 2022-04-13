@@ -24,12 +24,12 @@ jobs:
           COMMIT_HASH="$(git rev-parse --short HEAD)"
           echo ::set-output name=tag::${PACKAGE_VERSION}
           echo ::set-output name=merge_branch_name::"dev/merge-${PACKAGE_VERSION}-${COMMIT_HASH}-into-develop"
-      - name: Create merge branch
-        uses: peterjgrainger/action-create-branch@v2.0.1
-        with:
-          branch: ${{ steps.vars.outputs.merge_branch_name }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.caller_github_token }}
+      # - name: Create merge branch
+      #   uses: peterjgrainger/action-create-branch@v2.0.1
+      #   with:
+      #     branch: ${{ steps.vars.outputs.merge_branch_name }}
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.caller_github_token }}
       - name: Create pull request
         uses: repo-sync/pull-request@v2
         with:
