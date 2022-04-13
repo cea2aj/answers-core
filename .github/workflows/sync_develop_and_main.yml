@@ -6,4 +6,4 @@ on:
 
 jobs:
   create_pull_request:
-    uses: ./.github/workflows/callabe_sync_and_develop_main.yml
+    uses: ./.github/workflows/callable_sync_and_develop_main.yml
