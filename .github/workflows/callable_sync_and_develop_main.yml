@@ -15,6 +15,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Extract version and merge branch name
         id: vars
         run: |
@@ -29,9 +31,15 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.caller_github_token }}
       - name: Create pull request
         uses: repo-sync/pull-request@v2
+        id: open-pr
         with:
           source_branch: "${{ steps.vars.outputs.merge_branch_name }}"
           destination_branch: "develop"
           pr_title: "Merge ${{ github.event.repository.default_branch }} (${{ steps.vars.outputs.tag }}) into develop"
           pr_body: "Merge ${{ github.event.repository.default_branch }} (${{ steps.vars.outputs.tag }}) into develop"
           github_token: ${{ secrets.caller_github_token }}
+      - name: Rebase PR
+        uses: cea2aj/rebase@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ steps.open-pr.outputs.pr_number }}
