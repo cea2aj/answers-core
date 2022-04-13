@@ -27,7 +27,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create pull request
-        uses: cea2aj/pull-request
+        uses: cea2aj/pull-request@master
         with:
           source_branch: "master"
           destination_branch: "develop"
