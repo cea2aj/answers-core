@@ -7,3 +7,5 @@ on:
 jobs:
   create_pull_request:
     uses: ./.github/workflows/callable_sync_and_develop_main.yml
+    secrets:
+      caller_github_token: ${{ secrets.GITHUB_TOKEN }}
