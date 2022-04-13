@@ -1,6 +1,6 @@
 {
   "name": "@yext/answers-core",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "description": "Typescript Networking Library for the Yext Answers API",
   "main": "./lib/commonjs/index.js",
   "module": "./lib/esm/index.js",

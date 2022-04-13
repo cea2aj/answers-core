@@ -29,7 +29,7 @@ jobs:
       - name: Create pull request
         uses: cea2aj/pull-request@master
         with:
-          source_branch: "master"
+          source_branch: "${{ steps.vars.outputs.merge_branch_name }}"
           destination_branch: "develop"
           pr_title: "Merge ${{ github.event.repository.default_branch }} (${{ steps.vars.outputs.tag }}) into develop"
           pr_body: "Merge ${{ github.event.repository.default_branch }} (${{ steps.vars.outputs.tag }}) into develop"
