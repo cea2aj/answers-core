@@ -1,4 +1,4 @@
-name: create PR from main to develop
+name: Create PR from main to develop
 
 on:
   push:
@@ -27,11 +27,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create pull request
-        uses: cea2aj/pull-request@master
+        uses: repo-sync/pull-request@2.6.2
         with:
           source_branch: "${{ steps.vars.outputs.merge_branch_name }}"
           destination_branch: "develop"
           pr_title: "Merge ${{ github.event.repository.default_branch }} (${{ steps.vars.outputs.tag }}) into develop"
           pr_body: "Merge ${{ github.event.repository.default_branch }} (${{ steps.vars.outputs.tag }}) into develop"
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          entrypoint: './entrypoint.sh'
